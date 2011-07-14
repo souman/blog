@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Author:</b>
+  <%= @post.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= raw @post.content %>
+</p>
+<hr/>
+<h2 id="head_for_post">Comments</h2>
+
+<%= nested_comments @comment.arrange(:order => :created_at) %>
+ 
+<h2>Add a comment:</h2>
+<%= render "comments/form" %>
+<br />
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

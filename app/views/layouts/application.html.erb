@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body    id="store" >
+<div id="columns">
+    <div id="side">
+      <%= link_to 'Home', posts_path %> <br />
+      <%= link_to 'My Profile', users_path %><br />
+      <% if session[:user_id] %>
+        Welcome <%=  session[:user_name]%>
+        <br />
+        <%= button_to 'Logout' , logout_path, :method => :delete %>
+      <%else%>
+        <br/>
+        <%= button_to 'Login', login_path %>
+        New user? <%= link_to  'Register here', new_user_path %>
+      <% end %>
+         </div>
+  <div id="main" >
+    <%= yield %>
+  </div>
+
+
+
+ 
+</div>
+</body>
+
+
+
+</html>

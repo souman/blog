@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+  <%  if post.name == session[:user_name] %>
+  <tr class=" <%= cycle('list_line_odd' , 'list_line_even') %>">
+    <td><%= post.name %></td>
+    <td><%= post.title %></td>
+    <td><%= raw truncate(strip_tags(post.content),:length => 400) %></td>
+    <% t=post.updated_at %>
+    <td> <%= t.strftime("%a %B %d, %Y %H:%M") %>   </td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% end %>
+<% end %>

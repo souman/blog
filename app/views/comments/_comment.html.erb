@@ -1,0 +1,19 @@
+<div id="message">
+  <b>Commenter:</b>
+  <%= comment.commenter %>
+ 
+<p id="comment">
+  <b>Comment:</b>
+  <%= raw comment.body %>
+  <div id="right1">
+    <%= link_to "Reply", newone_path(:parent_id => comment, :post_id => comment.post) %>
+    <%#= link_to "Reply", newone_comment_path(:parent_id => comment) %>
+
+
+  <%  if comment.commenter == session[:user_name] || @post.name == session[:user_name] %>
+  <%= link_to 'Destroy Comment', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
+  </div>
+</p>
+</div>
+<hr/>

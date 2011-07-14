@@ -1,0 +1,81 @@
+
+<div id="post_list" >
+<h1>Listing your posts</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Updated at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%= render 'view' %>
+</table>
+
+<br />
+
+<%= link_to 'New Post', new_post_path %>
+</div>
+
+<div id="post_list">
+<h1>Listing posts by others</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <%  if post.name != session[:user_name] %>
+  <tr class=" <%= cycle('list_line_odd' , 'list_line_even') %>">
+    <td><%= post.name %></td>
+    <td><%= post.title %></td>
+    <td><%= raw truncate(strip_tags(post.content),:length => 400) %></td>
+    <td><%= link_to 'Show', post %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+</div>
+
+<div id="post_list">
+  <h1>Recent Activity</h1>
+  <h2>Posts</h2>
+  <% t2 = Time.now %>
+  <% i2 = t2.to_i %>
+  <% @posts.each do |post| %>
+    <% t1 = post.updated_at %>
+    <% i1 = t1.to_i %>
+    <% t3 = post.created_at %>
+    <% i3 = t3.to_i %>
+  <% if i2-i3 < 30000 %>
+       <%= post.name %> has created a new post  <b><%= post.title %></b> <%= link_to 'Show', post %>
+      <br />
+    <% elsif  i2-i1 < 30000 %>
+      <%= post.name %> has updated  <b><%= post.title %></b> <%= link_to 'Show', post %>
+      <br />
+   <% end %>
+  <% end %>
+  <h2>Comments</h2>
+  <% @posts.each do |post| %>
+    <% post.comments.each do |comment| %>
+      <% t4 = comment.created_at %>
+      <% i4 = t4.to_i %>
+      <% if i2-i4 < 30000 %>
+        <%= comment.commenter %> posted a new comment in the post <b><%= post.title %></b> <%= link_to 'Show', post %>
+        <br/>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<% @controller.latestupdate %>

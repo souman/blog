@@ -1,0 +1,11 @@
+<%= form_for([@post, @post.comments.build]) do |f| %>
+    <%= f.hidden_field :commenter, { :value => session[:user_name] } %>
+    <%= f.hidden_field :parent_id, { :value => @parent } %>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.cktext_area :body,:toolbar=>'Easy', :width=>'400px', :height=>'200px'%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

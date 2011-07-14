@@ -1,0 +1,7 @@
+<h1>Editing post</h1>
+<%  if @post.name == session[:user_name] %>
+<%= render 'form' %>
+
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', posts_path %>
+<% end %>

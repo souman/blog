@@ -1,0 +1,15 @@
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag :ckeditor %>
+<div id="message">
+  <b>Commenter:</b>
+  <%= @parentcomment.commenter %>
+ 
+<p id="comment">
+  <b>Comment:</b>
+  <%= raw @parentcomment.body %>
+</p>
+</div>
+<h3>Reply</h3>
+<%= render 'commentnew' %>
+
+<p><%= link_to "Back to Post", posts_path %></p>
