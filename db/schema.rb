@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20110712102727) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"
+    t.integer  "lft"
+    t.integer  "rgt"
   end
 
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
