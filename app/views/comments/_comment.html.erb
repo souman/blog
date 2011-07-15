@@ -1,9 +1,8 @@
 <div id="message">
-  <b>Commenter:</b>
   <%= comment.commenter %>
+  says:
  
 <p id="comment">
-  <b>Comment:</b>
   <%= raw comment.body %>
   <div id="right1">
     <%= link_to "Reply", newone_path(:parent_id => comment, :post_id => comment.post) %>

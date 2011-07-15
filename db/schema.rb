@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712102727) do
+ActiveRecord::Schema.define(:version => 20110715071538) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                                 :null => false
@@ -36,17 +36,20 @@ ActiveRecord::Schema.define(:version => 20110712102727) do
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ancestry"
-    t.integer  "lft"
-    t.integer  "rgt"
+    t.text     "ancestry"
   end
-
-  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
 
   create_table "posts", :force => true do |t|
     t.string   "name"
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recentactivities", :force => true do |t|
+    t.string   "type"
+    t.integer  "typeid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

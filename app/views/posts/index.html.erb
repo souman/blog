@@ -49,33 +49,6 @@
 </div>
 
 <div id="post_list">
-  <h1>Recent Activity</h1>
-  <h2>Posts</h2>
-  <% t2 = Time.now %>
-  <% i2 = t2.to_i %>
-  <% @posts.each do |post| %>
-    <% t1 = post.updated_at %>
-    <% i1 = t1.to_i %>
-    <% t3 = post.created_at %>
-    <% i3 = t3.to_i %>
-  <% if i2-i3 < 30000 %>
-       <%= post.name %> has created a new post  <b><%= post.title %></b> <%= link_to 'Show', post %>
-      <br />
-    <% elsif  i2-i1 < 30000 %>
-      <%= post.name %> has updated  <b><%= post.title %></b> <%= link_to 'Show', post %>
-      <br />
-   <% end %>
-  <% end %>
-  <h2>Comments</h2>
-  <% @posts.each do |post| %>
-    <% post.comments.each do |comment| %>
-      <% t4 = comment.created_at %>
-      <% i4 = t4.to_i %>
-      <% if i2-i4 < 30000 %>
-        <%= comment.commenter %> posted a new comment in the post <b><%= post.title %></b> <%= link_to 'Show', post %>
-        <br/>
-      <% end %>
-    <% end %>
-  <% end %>
+  <h1>Recent Activities</h1>
+  <%= render 'recent_activity' %>
 </div>
-<% @controller.latestupdate %>
